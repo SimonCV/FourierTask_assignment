@@ -27,7 +27,7 @@ static void cannyThreshold(Mat &src, Mat &dst) {
 
 
 int main() {
-    string path = "../openCVcourse/imgs/billede_noisefree.png";
+    string path = "../openCVcourse/imgs/billede_noiseFree.png";
 
 	// Normalt ville man skulle konvertere billedet til grayscale, men vores billede er allerede i sort/hvid. dst er destinationsbilledet
 	// til canny edge detect funktionen.
@@ -37,9 +37,9 @@ int main() {
 		cerr << "No image data" << endl;
     }
 
-    /*imshow("Original", src);
+    imshow("Original", src);
 	cannyThreshold(src, dst);
 	imshow("Canny Edge Detection", dst);
-    waitKey(0);*/
+    waitKey(0);
 	return 0;
 }
