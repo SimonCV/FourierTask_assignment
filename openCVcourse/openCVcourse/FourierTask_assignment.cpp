@@ -26,7 +26,7 @@ void cannyThreshold(Mat &src, Mat &dst) {
     Canny(src, dst, lowThreshold, maxThreshold, kernel_size, true);
 }
 
-void houghCircleTransform(Mat &src, Mat &dst) {
+Mat houghCircleTransform(Mat &src) {
 	// Initialize the accumulator to 0
     Mat accumulator = Mat::zeros(src.rows, src.cols, CV_8UC1);
     Mat acc(accumulator.rows, accumulator.cols, accumulator.type());
@@ -53,7 +53,7 @@ void houghCircleTransform(Mat &src, Mat &dst) {
 			}
 		}
     }
-    accumulator.copyTo(dst);
+    return accumulator;
 }
 
 int main() {
@@ -76,7 +76,7 @@ int main() {
     //cout << "src type = " << src.type() << endl;
     //cout << "dst type = " << dst.type() << endl;
     cout << "test1" << endl;
-    houghCircleTransform(dst, hough);
+    houghCircleTransform(dst).copyTo(hough);
     cout << "test2"  << endl;
     //cout << "hough size out: " << hough.size << endl;
     //imshow("Hough Circle Transform", hough);
