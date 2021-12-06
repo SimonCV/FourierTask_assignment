@@ -1,2 +1,3 @@
 ﻿  FourierTask_assignment.cpp
-  openCVcourse.vcxproj -> C:\Users\simon\source\repos\openCVcourse\x64\Debug\openCVcourse.exe
+C:\Users\simon\Documents\GitHub\FourierTask_assignment\openCVcourse\openCVcourse\FourierTask_assignment.cpp(113,2): warning C4551: function call missing argument list
+  openCVcourse.vcxproj -> C:\Users\simon\Documents\GitHub\FourierTask_assignment\openCVcourse\x64\Debug\openCVcourse.exe
