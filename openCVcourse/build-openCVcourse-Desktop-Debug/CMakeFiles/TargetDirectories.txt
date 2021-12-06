@@ -1,0 +1,3 @@
+/home/host/FourierTask_assignment/openCVcourse/build-openCVcourse-Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/host/FourierTask_assignment/openCVcourse/build-openCVcourse-Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/host/FourierTask_assignment/openCVcourse/build-openCVcourse-Desktop-Debug/CMakeFiles/FourierTask_assignment.dir
