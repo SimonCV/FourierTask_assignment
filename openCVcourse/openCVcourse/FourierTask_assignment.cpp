@@ -1,8 +1,11 @@
-﻿#include <opencv2/imgcodecs.hpp>
+﻿#define _USE_MATH_DEFINES
+#include <cmath>
+
+#include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <iostream>
-// #include <math.h>
+
 
 using namespace cv;
 using namespace std;
@@ -90,7 +93,7 @@ int main() {
     // Normalt ville man skulle konvertere billedet til grayscale, men vores billede er allerede i sort/hvid. dst er destinationsbilledet
     // til canny edge detect funktionen.
     Mat src = imread(path), dst;
-    Mat hough = Mat::zeros(src.cols, src.rows, CV_8UC1);
+    Mat hough = Mat::zeros(src.cols, src.rows, CV_8UC3);
 
     cout << "Source type : " << type2str(src.type()) << endl;
     cout << "Canny type  : " << type2str(dst.type()) << endl;

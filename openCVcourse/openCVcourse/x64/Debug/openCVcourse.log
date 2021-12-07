@@ -1,3 +1,4 @@
 ﻿  FourierTask_assignment.cpp
-C:\Users\simon\Documents\GitHub\FourierTask_assignment\openCVcourse\openCVcourse\FourierTask_assignment.cpp(113,2): warning C4551: function call missing argument list
+C:\Users\simon\Documents\GitHub\FourierTask_assignment\openCVcourse\openCVcourse\FourierTask_assignment.cpp(75,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\simon\Documents\GitHub\FourierTask_assignment\openCVcourse\openCVcourse\FourierTask_assignment.cpp(76,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   openCVcourse.vcxproj -> C:\Users\simon\Documents\GitHub\FourierTask_assignment\openCVcourse\x64\Debug\openCVcourse.exe
