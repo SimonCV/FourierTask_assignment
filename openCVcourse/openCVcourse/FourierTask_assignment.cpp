@@ -49,48 +49,19 @@ void cannyThreshold(Mat &src, Mat &dst) {
     Canny(src, dst, lowThreshold, maxThreshold, kernel_size, true);
 }
 
-void houghCircleTransform(Mat &src) {
-	// Initialize the accumulator to 0
-    Mat accumulator = Mat::zeros(Size(src.cols, src.rows), CV_8UC1);
-
-	double r = 32;
-    double b = 0;
-    double a = 0;
-
-    cout << "Accumulator type: " << type2str(accumulator.type()) << endl;
-
-    cout << "Image size       = " << src.rows << ", " << src.cols << endl;
-    cout << "Accumulator size = " << accumulator.rows << ", " << accumulator.cols << endl;
-
-	// Best candidate. (x,y) in image space to (a,b) in Hough space
-    for (int x = 0; x < src.rows; x++) {
-        for (int y = 0; y < src.cols; y++) {
-			//cout << "src.at(" << y << ", " << x << ") = " << (int)(src.at<uchar>(y, x)) << endl;
-            if (src.at<uchar>(x, y) > 0) {
-				for (double theta = 0; theta < 360; theta++) {
-                    b = y - r * sin(theta * M_PI / 180);
-                    a = x - r * cos(theta * M_PI / 180);
-                    //cout << "Accum (a, b)(" << a << ", " << b << ") at (x, y, theta)(" << x << ", " << y << ", " << theta << ") = ";
-                    accumulator.at<uchar>(a, b) += 1;
-                    //cout << (int)accumulator.at<uchar>(a, b) << endl;
-                }
-			}
-		}
-    }
-}
-
-void newHoughCircleTransform(Mat &canny) {
+void houghCircleTransform(Mat &canny) {
     // Initialize the accumulator to 0
+    Mat temp(480, 640, CV_8UC1);
     Mat acc = Mat::zeros(Size(canny.cols, canny.rows), CV_8UC1);
 
     double r = 32;
     double b = 0;
     double a = 0;
 
-    cout << "Accumulator type: " << type2str(acc.type()) << endl;
+    cout << "Acc type    : " << type2str(acc.type()) << endl;
 
-    cout << "Image size       = " << canny.rows << ", " << canny.cols << endl;
-    cout << "Accumulator size = " << acc.rows << ", " << acc.cols << endl;
+    cout << "Image size = " << canny.rows << ", " << canny.cols << endl;
+    cout << "Acc   size = " << acc.rows << ", " << acc.cols << endl;
 
     // Best candidate. (x,y) in image space to (a,b) in Hough space
     for (int x = 0; x < canny.rows; x++) {
@@ -101,33 +72,30 @@ void newHoughCircleTransform(Mat &canny) {
                     b = y - r * sin(theta * M_PI / 180);
                     a = x - r * cos(theta * M_PI / 180);
                     //cout << "Accum (a, b)(" << a << ", " << b << ") at (x, y, theta)(" << x << ", " << y << ", " << theta << ") = ";
-                    //if (accumulator.at<uchar>(a, b) < 255) {
-                        acc.at<uchar>(a, b) += 1;
-                    //}
+                    acc.at<uchar>(a, b) += 1;
                     //cout << (int)accumulator.at<uchar>(a, b) << endl;
                 }
             }
         }
-        imshow("Acc", acc);
-        waitKey(1);
     }
-
+    imshow("Acc", acc);
+    waitKey(0);
 }
 
 int main() {
     string path = "../openCVcourse/imgs/billede_noiseFree.png";
 
-	// Normalt ville man skulle konvertere billedet til grayscale, men vores billede er allerede i sort/hvid. dst er destinationsbilledet
-	// til canny edge detect funktionen.
+    // Normalt ville man skulle konvertere billedet til grayscale, men vores billede er allerede i sort/hvid. dst er destinationsbilledet
+    // til canny edge detect funktionen.
     Mat src = imread(path), dst;
-    Mat hough = Mat::zeros(src.rows, src.cols, CV_8UC1);
+    Mat hough = Mat::zeros(src.cols, src.rows, CV_8UC1);
 
     cout << "Source type : " << type2str(src.type()) << endl;
     cout << "Canny type  : " << type2str(dst.type()) << endl;
     cout << "Hough type  : " << type2str(hough.type()) << endl;
 
-	if (!src.data) {
-		cerr << "No image data" << endl;
+    if (!src.data) {
+        cerr << "No image data" << endl;
     }
 
     imshow("Original", src);
@@ -137,7 +105,7 @@ int main() {
     waitKey(0);
     destroyAllWindows();
     //cout << "test1" << endl;
-    newHoughCircleTransform(dst);
-    //cout << "test2"  << endl;
+    houghCircleTransform(dst);
+    cout << "test2"  << endl;
     return 0;
 }
