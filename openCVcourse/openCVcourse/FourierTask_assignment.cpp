@@ -55,8 +55,8 @@ void houghCircleTransform(Mat &canny) {
     Mat acc = Mat::zeros(Size(canny.cols, canny.rows), CV_8UC1);
 
     double r = 32;
-    double b = 0;
-    double a = 0;
+    int b = 0;
+    int a = 0;
 
     cout << "Acc type    : " << type2str(acc.type()) << endl;
 
@@ -72,8 +72,10 @@ void houghCircleTransform(Mat &canny) {
                     b = y - r * sin(theta * M_PI / 180);
                     a = x - r * cos(theta * M_PI / 180);
                     //cout << "Accum (a, b)(" << a << ", " << b << ") at (x, y, theta)(" << x << ", " << y << ", " << theta << ") = ";
-                    acc.at<uchar>(a, b) += 1;
-                    //cout << (int)accumulator.at<uchar>(a, b) << endl;
+                    //if (a < x && b < y) {
+                        acc.at<uchar>(a, b) += 1;
+                    //}
+                    //cout << acc.at<uchar>(a, b) << endl;
                 }
             }
         }
@@ -104,7 +106,7 @@ int main() {
     imshow("Canny Edge Detection", dst);
     waitKey(0);
     destroyAllWindows();
-    //cout << "test1" << endl;
+    cout << "test1" << endl;
     houghCircleTransform(dst);
     cout << "test2"  << endl;
     return 0;
