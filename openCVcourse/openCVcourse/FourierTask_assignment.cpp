@@ -70,6 +70,7 @@ int main() {
 
     /* END OF CANNY EDGE DETECTION */
 
+    imwrite("../openCVcourse/imgs/canny.png", canny);
     imshow("Canny Edge Detection", canny);
     waitKey(0);
     destroyAllWindows();
@@ -105,6 +106,7 @@ int main() {
             }
         }
     }
+    imwrite("../openCVcourse/imgs/acc.png", acc);
     imshow("Acc", acc);
     waitKey(0);
 
@@ -126,6 +128,8 @@ int main() {
         }
     }
 
+    cout << "Circle centerpoint: (" << col << ", " << row << ")" << endl;
+
     circle(src, Point(row, col), r, Scalar(0, 0, 255), 3, LINE_AA);
     circle(src, Point(row, col), 1, Scalar(0, 0, 255), 3, LINE_AA);
 
@@ -134,6 +138,10 @@ int main() {
 
     circle(acc, Point(row, col), r, Scalar(255, 100, 255), 3, LINE_AA);
     circle(acc, Point(row, col), 1, Scalar(255, 100, 255), 3, LINE_AA);
+
+    imwrite("../openCVcourse/imgs/src_circle.png", src);
+    imwrite("../openCVcourse/imgs/canny_circle.png", canny);
+    imwrite("../openCVcourse/imgs/acc_circle.png", acc);
 
     imshow("Circle on src", src);
     imshow("Circle on canny", canny);
